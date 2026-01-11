@@ -1,0 +1,26 @@
+name: Scan My Zip File
+on: [push] # This runs the scan every time you upload a file
+
+jobs:
+  dep-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Unzip the files
+        # Replace 'my-project.zip' with your actual zip file name
+        run: unzip Testpackages.zip -d ./to_scan 
+
+      - name: Run OWASP Dependency Check
+        uses: dependency-check/DependencyCheck-action@main
+        with:
+          project: 'My Zip Scan'
+          path: './to_scan' # This tells the scanner to look inside the unzipped folder
+          format: 'HTML'
+          
+      - name: Save the Security Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: Security-Report
+          path: 'reports'
