@@ -15,7 +15,7 @@ jobs:
       - name: Run OWASP Dependency Check
         uses: dependency-check/DependencyCheck-action@main
         with:
-          project: 'My Zip Scan'
+          project: ${{ github.event.repository.name }}
           path: './to_scan' # This tells the scanner to look inside the unzipped folder
           format: 'HTML'
           
