@@ -13,7 +13,7 @@ jobs:
         run: unzip Testpackages.zip -d ./to_scan 
 
       - name: Run OWASP Dependency Check
-        uses: dependency-check/DependencyCheck-action@main
+        uses: dependency-check/Dependency-Check_Action@main
         with:
           project: 'DevOPSGKrepo'
           path: './to_scan' # This tells the scanner to look inside the unzipped folder
